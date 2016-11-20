@@ -4,15 +4,17 @@ Detector de punto ciego
 Basado en información de (entre otras) las siguientes webs
 http://www.circuitbasics.com/how-to-set-up-an-ultrasonic-range-finder-on-an-arduino/
 http://programarfacil.com/blog/arduino-blog/sensor-ultrasonico-arduino-medir-distancia/
+http://programarfacil.com/podcast/31-api-de-arduino/
 */
 
-#define pinDisparo 10
-#define pinEco 13
-#define tiempoEspera 500
+const int pinDisparo = 10;
+const int pinEco = 13;
+const int tiempoEspera = 500;
 // velocidad en Km/h que queremos detectar
-#define velocidadADetectarenKmH 10
+const int velocidadADetectarenKmH = 10;
 // definimos el pin que vamos a usar para la salida del led
-#define LED 10
+const int LED = 10;
+
 
 // pasamos los Km/h a cm/s y lo dividimos entre dos porque hacemos una medición cada medio segundo
 float velocidadADetectarenCmS = (velocidadADetectarenKmH * 27.78) / 2;
