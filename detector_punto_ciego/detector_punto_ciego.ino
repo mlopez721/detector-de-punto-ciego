@@ -28,7 +28,7 @@ int ultimaPosicion = sizeof(valorDistancia) - 1;
 // milis del contador interno de Arduino, nos indican el momento en el tiempo en que la alarma se ha activado
 float milisInicioAlarma	= 0;
 // tiempo en milis que va a durar la alarma activada
-float duracionDeAlarma	= 1;
+float duracionDeAlarma	= 3000;
 // el tiempo que ha pasado desde que la alarma se ha activado
 float tiempoDesdeInicioAlarma = 0;
 // indicador de que la alarma está activada
@@ -76,33 +76,40 @@ void loop() {
 		diferenciaDistancia = (valorDistancia[indiceValores] - valorDistancia[indiceValores - 1]);
 	}
 
-	// mostramos los datos que tenemos en el array
-	//mostrarDatosArray();
-
-	// si la diferencia es positiva, significa que el objeto detectado está más cerca <-- lo que nos intersa en este caso
-	// si la diferencia es negativa, significa que el objeto detectado está más lejos 
+	// si la diferencia es positiva, significa que el objeto detectado está más lejos
+	// si la diferencia es negativa, significa que el objeto detectado está más cerca <-- lo que nos intersa en este caso 
 	// solo tenemos en cuenta si el objeto se aproxima a una velocidad igual o superior a la indicada
-	if (diferenciaDistancia >= velocidadADetectarenCmS)
+	if (diferenciaDistancia <= (velocidadADetectarenCmS * -1))
 	{
 		// activamos la alarma
 		activarAlarma();
-		//apagarAlarma();
 		// guardamos el momento en el que se ha iniciado la alarma
-		milisInicioAlarma = millis();
-		// mientras no pase el tiempo que hemos indicado como duración de la alarma, sigue activa
-		tiempoDesdeInicioAlarma = millis() - milisInicioAlarma;
-		if (tiempoDesdeInicioAlarma >= duracionDeAlarma)
-		{
-			apagarAlarma();
-		}
+		milisInicioAlarma = float(millis());
+		
+		Serial.print("El valor de milisInicioAlarma: "); Serial.println(milisInicioAlarma);	
 
 		Serial.print("Diferencia entre distancias: ");
 		Serial.println(diferenciaDistancia);
 		Serial.print("El valor es superior o igual a " );
 		Serial.println(velocidadADetectarenCmS);
-		Serial.println("****** Objeto acercándose ******");
+		Serial.println("********************** Objeto acercándose **********************");
+		
 	}
 
+	
+	// comprobamos si tenemos que mantener la alarma activada
+	// mientras no pase el tiempo que hemos indicado como duración de la alarma, sigue activa
+	if (alarmaActivada == true)
+	{
+		tiempoDesdeInicioAlarma = float(millis()) - milisInicioAlarma;
+		//Serial.print("El valor de float(millis()): "); Serial.println(float(millis()));
+		//Serial.print("El valor de tiempoDesdeInicioAlarma: "); Serial.println(tiempoDesdeInicioAlarma);
+		if (tiempoDesdeInicioAlarma >= duracionDeAlarma)
+		{
+			apagarAlarma();
+		}
+	}
+		
 	mostrarDatosSerial();
 
 	delay(tiempoEspera);
