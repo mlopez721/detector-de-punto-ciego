@@ -11,13 +11,13 @@ const int pinDisparo	= 10;
 const int pinEco		= 13;
 const int tiempoEspera	= 500;
 // velocidad en Km/h que queremos detectar
-const float velocidadADetectarenKmH = 1.5;
+const float velocidadADetectarEnKmH = 1.5;
 // definimos el pin que vamos a usar para la salida del led
 const int LED			= 11;
 
 float duracion, distancia;
 // pasamos los Km/h a cm/s y lo dividimos entre dos porque hacemos una medición cada medio segundo
-float velocidadADetectarenCmS = (velocidadADetectarenKmH * 27.78) / 2;
+float velocidadADetectarEnCmS = (velocidadADetectarEnKmH * 27.78) / 2;
 // definimos el array donde vamos a meter los valores temporales
 float valorDistancia[2] = { 0, 0 };
 // definimos el índice del array
@@ -30,7 +30,7 @@ float milisInicioAlarma	= 0;
 // tiempo en milis que va a durar la alarma activada
 float duracionDeAlarma	= 3000;
 // el tiempo que ha pasado desde que la alarma se ha activado
-float tiempoDesdeInicioAlarma = 0;
+float milisDesdeInicioAlarma = 0;
 // indicador de que la alarma está activada
 boolean alarmaActivada	= false;
 
@@ -79,7 +79,7 @@ void loop() {
 	// si la diferencia es positiva, significa que el objeto detectado está más lejos
 	// si la diferencia es negativa, significa que el objeto detectado está más cerca <-- lo que nos intersa en este caso 
 	// solo tenemos en cuenta si el objeto se aproxima a una velocidad igual o superior a la indicada
-	if (diferenciaDistancia <= (velocidadADetectarenCmS * -1))
+	if (diferenciaDistancia <= (velocidadADetectarEnCmS * -1))
 	{
 		// activamos la alarma
 		activarAlarma();
@@ -91,7 +91,7 @@ void loop() {
 		Serial.print("Diferencia entre distancias: ");
 		Serial.println(diferenciaDistancia);
 		Serial.print("El valor es superior o igual a " );
-		Serial.println(velocidadADetectarenCmS);
+		Serial.println(velocidadADetectarEnCmS);
 		Serial.println("********************** Objeto acercándose **********************");
 		
 	}
@@ -101,10 +101,10 @@ void loop() {
 	// mientras no pase el tiempo que hemos indicado como duración de la alarma, sigue activa
 	if (alarmaActivada == true)
 	{
-		tiempoDesdeInicioAlarma = float(millis()) - milisInicioAlarma;
+		milisDesdeInicioAlarma = float(millis()) - milisInicioAlarma;
 		//Serial.print("El valor de float(millis()): "); Serial.println(float(millis()));
 		//Serial.print("El valor de tiempoDesdeInicioAlarma: "); Serial.println(tiempoDesdeInicioAlarma);
-		if (tiempoDesdeInicioAlarma >= duracionDeAlarma)
+		if (milisDesdeInicioAlarma >= duracionDeAlarma)
 		{
 			apagarAlarma();
 		}
@@ -154,12 +154,11 @@ void apagarAlarma()
 // mostramos el valor a través de Serial
 void mostrarDatosSerial()
 {
+	Serial.print("Distancia = ");
 	if (distancia >= 400 || distancia <= 2) {
-		Serial.print("Distancia = ");
 		Serial.println("El objeto está más cerca de 2 cm o más lejos de 400 cm");
 	}
 	else {
-		Serial.print("Distancia = ");
 		Serial.print(distancia);
 		Serial.println(" cm");
 	}
