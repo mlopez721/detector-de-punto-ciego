@@ -7,13 +7,14 @@ http://programarfacil.com/blog/arduino-blog/sensor-ultrasonico-arduino-medir-dis
 http://programarfacil.com/podcast/31-api-de-arduino/
 */
 
-const int pinDisparo	= 10;
-const int pinEco		= 13;
-const int tiempoEspera	= 500;
+// definimos los parámetros del sensor de ultrasonidos
+const int pinDisparo = 10;
+const int pinEco = 13;
+const int tiempoEspera = 500;
+// definimos el pin que vamos a usar para la salida del led
+const int LED = 8;
 // velocidad en Km/h que queremos detectar
 const float velocidadADetectarEnKmH = 1.5;
-// definimos el pin que vamos a usar para la salida del led
-const int LED			= 11;
 
 float duracion, distancia;
 // pasamos los Km/h a cm/s y lo dividimos entre dos porque hacemos una medición cada medio segundo
@@ -26,13 +27,13 @@ int indiceValores = 0;
 int ultimaPosicion = sizeof(valorDistancia) - 1;
 
 // milis del contador interno de Arduino, nos indican el momento en el tiempo en que la alarma se ha activado
-float milisInicioAlarma	= 0;
+float milisInicioAlarma = 0;
 // tiempo en milis que va a durar la alarma activada
-float duracionDeAlarma	= 3000;
+float duracionDeAlarma = 3000;
 // el tiempo que ha pasado desde que la alarma se ha activado
 float milisDesdeInicioAlarma = 0;
 // indicador de que la alarma está activada
-boolean alarmaActivada	= false;
+boolean alarmaActivada = false;
 
 void setup() {
 	Serial.begin(9600);
@@ -51,6 +52,7 @@ void loop() {
 	// definimos la variable para detectar la diferencia en la distancia de dos mediciones
 	int   diferenciaDistancia = 0;
 
+	// lanzamos el pulso y medimos lo que tarda en volver
 	digitalWrite(pinDisparo, LOW);
 	delayMicroseconds(2);
 
@@ -58,6 +60,7 @@ void loop() {
 	delayMicroseconds(10);
 	digitalWrite(pinDisparo, LOW);
 
+	// convertimos la medida en distancia, concretamente en centímetros
 	duracion = pulseIn(pinEco, HIGH);
 	distancia = (duracion / 2) * 0.0344;
 
@@ -85,18 +88,18 @@ void loop() {
 		activarAlarma();
 		// guardamos el momento en el que se ha iniciado la alarma
 		milisInicioAlarma = float(millis());
-		
-		Serial.print("El valor de milisInicioAlarma: "); Serial.println(milisInicioAlarma);	
+
+		Serial.print("El valor de milisInicioAlarma: "); Serial.println(milisInicioAlarma);
 
 		Serial.print("Diferencia entre distancias: ");
 		Serial.println(diferenciaDistancia);
-		Serial.print("El valor es superior o igual a " );
+		Serial.print("El valor es superior o igual a ");
 		Serial.println(velocidadADetectarEnCmS);
 		Serial.println("********************** Objeto acercándose **********************");
-		
+
 	}
 
-	
+
 	// comprobamos si tenemos que mantener la alarma activada
 	// mientras no pase el tiempo que hemos indicado como duración de la alarma, sigue activa
 	if (alarmaActivada == true)
@@ -109,7 +112,7 @@ void loop() {
 			apagarAlarma();
 		}
 	}
-		
+
 	mostrarDatosSerial();
 
 	delay(tiempoEspera);
