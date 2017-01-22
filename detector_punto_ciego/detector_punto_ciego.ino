@@ -7,14 +7,13 @@ http://programarfacil.com/blog/arduino-blog/sensor-ultrasonico-arduino-medir-dis
 http://programarfacil.com/podcast/31-api-de-arduino/
 */
 
-// definimos los parámetros del sensor de ultrasonidos
 const int pinDisparo	= 10;
 const int pinEco		= 13;
 const int tiempoEspera	= 500;
-// definimos el pin que vamos a usar para la salida del led
-const int LED			= 8;
 // velocidad en Km/h que queremos detectar
 const float velocidadADetectarEnKmH = 1.5;
+// definimos el pin que vamos a usar para la salida del led
+const int LED			= 11;
 
 float duracion, distancia;
 // pasamos los Km/h a cm/s y lo dividimos entre dos porque hacemos una medición cada medio segundo
@@ -52,7 +51,6 @@ void loop() {
 	// definimos la variable para detectar la diferencia en la distancia de dos mediciones
 	int   diferenciaDistancia = 0;
 
-	// lanzamos el pulso y medimos lo que tarda en volver
 	digitalWrite(pinDisparo, LOW);
 	delayMicroseconds(2);
 
@@ -60,7 +58,6 @@ void loop() {
 	delayMicroseconds(10);
 	digitalWrite(pinDisparo, LOW);
 
-	// convertimos la medida en distancia, concretamente en centímetros
 	duracion = pulseIn(pinEco, HIGH);
 	distancia = (duracion / 2) * 0.0344;
 
