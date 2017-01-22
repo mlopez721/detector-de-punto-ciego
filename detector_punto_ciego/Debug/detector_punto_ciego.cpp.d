@@ -1,15 +1,13 @@
-C:\Users\p\AppData\Local\Temp\VMicroBuilds\detector_punto_ciego\uno\detector_punto_ciego.cpp.o: \
- C:\Users\p\AppData\Local\Temp\VMicroBuilds\detector_punto_ciego\uno\detector_punto_ciego.cpp \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/arduino.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/binary.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/WCharacter.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/WString.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/HardwareSerial.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Stream.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Print.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Printable.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/USBAPI.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Arduino.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\variants\standard/pins_arduino.h \
- C:\Program\ Files\ (x86)\Microsoft\ Visual\ Studio\ 14.0\Common7\IDE\Extensions\tu55fcc5.ihq\Micro\ Platforms\default\debuggers\VM_DBG/VM_DBG.h \
- C:\Program\ Files\ (x86)\Arduino\hardware\arduino\avr\cores\arduino/Arduino.h
+C:\Users\p\AppData\Local\Temp\VMBuilds\detector_punto_ciego\uno\detector_punto_ciego.cpp.o: \
+ C:\Users\p\AppData\Local\Temp\VMBuilds\detector_punto_ciego\uno\detector_punto_ciego.cpp \
+ C:\Users\p\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.17\cores\arduino/arduino.h \
+ C:\Users\p\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.17\cores\arduino/binary.h \
+ C:\Users\p\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.17\cores\arduino/WCharacter.h \
+ C:\Users\p\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.17\cores\arduino/WString.h \
+ C:\Users\p\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.17\cores\arduino/HardwareSerial.h \
+ C:\Users\p\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.17\cores\arduino/Stream.h \
+ C:\Users\p\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.17\cores\arduino/Print.h \
+ C:\Users\p\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.17\cores\arduino/Printable.h \
+ C:\Users\p\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.17\cores\arduino/USBAPI.h \
+ C:\Users\p\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.17\cores\arduino/Arduino.h \
+ C:\Users\p\AppData\Local\arduino15\packages\arduino\hardware\avr\1.6.17\variants\standard/pins_arduino.h
